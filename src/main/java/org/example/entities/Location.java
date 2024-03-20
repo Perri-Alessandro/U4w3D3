@@ -1,8 +1,9 @@
 package org.example.entities;
 
-import jakarta.persistence.*;
-
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "location")
@@ -15,16 +16,15 @@ public class Location {
     public String name;
 
     public String città;
-    @OneToMany(mappedBy = "location")
-    public List<Evento> eventi;
+//    @OneToMany(mappedBy = "location")
+//    public List<Evento> eventi;
 
     public Location() {
     }
 
-    public Location(String name, String città, List<Evento> eventi) {
+    public Location(String name, String città) {
         this.name = name;
         this.città = città;
-        this.eventi = eventi;
     }
 
     public long getId() {
@@ -51,13 +51,13 @@ public class Location {
         this.città = città;
     }
 
-    public List<Evento> getEventi() {
-        return eventi;
-    }
-
-    public void setEventi(List<Evento> eventi) {
-        this.eventi = eventi;
-    }
+//    public List<Evento> getEventi() {
+//        return eventi;
+//    }
+//
+//    public void setEventi(List<Evento> eventi) {
+//        this.eventi = eventi;
+//    }
 
     @Override
     public String toString() {
@@ -65,7 +65,7 @@ public class Location {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", città='" + città + '\'' +
-                ", eventi=" + eventi +
+//                ", eventi=" + eventi +
                 '}';
     }
 }

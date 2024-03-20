@@ -27,25 +27,28 @@ public class Application {
         PersonaDao personaDAO = new PersonaDao(em);
         PartecipazioneDao partDAO = new PartecipazioneDao(em);
 
-        Evento test = null;
 
-        Location roma = new Location("Stadio olimpico", "Roma", (List<Evento>) test);
+        Location roma = new Location("giornata sugli sci", "Passo san Pellegrino");
 
         locatDao.save(roma);
 
         Partecipazione eccomi = null;
-        test = new Evento("gita in montagna"
+        Evento test = new Evento("gita in montagna"
                 , LocalDate.of(2024, 4, 12)
-                , "fewrzgrehrth", 20L, EventoType.PRIVATO, (List<Partecipazione>) eccomi, roma);
+                , "fewrzgrehrth", 20, EventoType.PRIVATO, (List<Partecipazione>) eccomi, roma);
 
         System.out.println("Hello World!");
 
         eventoDao.save(test);
 
-        Persona prima = null;
+
+        Persona prima = new Persona("Giorgio", "Bianchi", "giorgiobianchi@gmail.com", LocalDate.of(1993, 9, 6), PersonaType.M, (List<Partecipazione>) eccomi);
+        personaDAO.save(prima);
+
         eccomi = new Partecipazione(prima, test);
 
         partDAO.save(eccomi);
+
 
 //        Evento trova = null;
 //        try {
@@ -69,9 +72,6 @@ public class Application {
 //            System.out.println(cancella.getTitolo());
 //        }
 
-
-        prima = new Persona("Gianni", "Rossi", "giannirossi@gmail.com", LocalDate.of(1983, 9, 25), PersonaType.M, (List<Partecipazione>) eccomi);
-        personaDAO.save(prima);
 
         em.close();
         emFactory.close();
