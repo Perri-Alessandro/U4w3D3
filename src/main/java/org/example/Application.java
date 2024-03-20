@@ -28,24 +28,24 @@ public class Application {
         PartecipazioneDao partDAO = new PartecipazioneDao(em);
 
 
-        Location roma = new Location("giornata sugli sci", "Passo san Pellegrino");
+        Location moena = new Location("a funghi nel bosco", "Moena");
 
-        locatDao.save(roma);
+        locatDao.save(moena);
 
         Partecipazione eccomi = null;
-        Evento test = new Evento("gita in montagna"
-                , LocalDate.of(2024, 4, 12)
-                , "fewrzgrehrth", 20, EventoType.PRIVATO, (List<Partecipazione>) eccomi, roma);
+        Evento test = new Evento("a funghi"
+                , LocalDate.of(2024, 5, 01)
+                , "hytnhntrnrfewrzgrehrth", 6, EventoType.PUBBLICO, (List<Partecipazione>) eccomi, moena);
 
         System.out.println("Hello World!");
 
         eventoDao.save(test);
 
 
-        Persona prima = new Persona("Giorgio", "Bianchi", "giorgiobianchi@gmail.com", LocalDate.of(1993, 9, 6), PersonaType.M, (List<Partecipazione>) eccomi);
+        Persona prima = new Persona("Federico", "Verdi", "verdif@gmail.com", LocalDate.of(1988, 3, 14), PersonaType.M, (List<Partecipazione>) eccomi);
         personaDAO.save(prima);
 
-        eccomi = new Partecipazione(prima, test);
+        eccomi = new Partecipazione(PartecipazioneType.DA_CONFERMARE, prima, test);
 
         partDAO.save(eccomi);
 

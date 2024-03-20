@@ -22,17 +22,14 @@ public class Partecipazione {
     public Partecipazione() {
     }
 
-    public Partecipazione(Persona persona, Evento evento) {
+    public Partecipazione(PartecipazioneType stato, Persona persona, Evento evento) {
         this.persona = persona;
         this.evento = evento;
+        this.stato = stato;
     }
 
     public PartecipazioneType getStato() {
         return stato;
-    }
-
-    public void setStato(PartecipazioneType stato) {
-        this.stato = stato;
     }
 
     public long getId() {
