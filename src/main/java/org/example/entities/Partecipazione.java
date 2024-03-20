@@ -11,7 +11,8 @@ public class Partecipazione {
     @GeneratedValue
     private long id;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
     private Persona persona;
 
     @ManyToOne

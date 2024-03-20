@@ -33,16 +33,17 @@ public class Application {
 
         locatDao.save(roma);
 
+        Partecipazione eccomi = null;
         test = new Evento("gita in montagna"
                 , LocalDate.of(2024, 4, 12)
-                , "fewrzgrehrth", 20, EventoType.PRIVATO, roma);
+                , "fewrzgrehrth", 20L, EventoType.PRIVATO, (List<Partecipazione>) eccomi, roma);
 
         System.out.println("Hello World!");
 
         eventoDao.save(test);
 
         Persona prima = null;
-        Partecipazione eccomi = new Partecipazione(prima, test);
+        eccomi = new Partecipazione(prima, test);
 
         partDAO.save(eccomi);
 
@@ -69,7 +70,7 @@ public class Application {
 //        }
 
 
-        prima = new Persona("Gianni", "Rossi", "giannirossi@gmail.com", LocalDate.of(1983, 9, 25), PersonaType.M, test);
+        prima = new Persona("Gianni", "Rossi", "giannirossi@gmail.com", LocalDate.of(1983, 9, 25), PersonaType.M, (List<Partecipazione>) eccomi);
         personaDAO.save(prima);
 
         em.close();
