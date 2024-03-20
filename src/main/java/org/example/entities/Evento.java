@@ -23,8 +23,8 @@ public class Evento {
 
     public long maxPartecipanti;
 
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
-    public List<Partecipazione> partecipazioni;
+//    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+//    public List<Partecipazione> partecipazioni;
 
     @OneToMany
     public Location location;
@@ -32,13 +32,13 @@ public class Evento {
     public Evento() {
     }
 
-    public Evento(String titolo, LocalDate data, String descrizione, long maxPartecipanti, EventoType tipoEvento, List<Partecipazione> partecipazioni, Location location) {
+    public Evento(String titolo, LocalDate data, String descrizione, long maxPartecipanti, EventoType tipoEvento, Location location) {
         this.data = data;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.maxPartecipanti = maxPartecipanti;
         this.tipoEvento = tipoEvento;
-        this.partecipazioni = partecipazioni;
+//        this.partecipazioni = partecipazioni;
         this.location = location;
     }
 

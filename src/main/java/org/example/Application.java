@@ -4,7 +4,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.example.dao.EventoDAO;
+import org.example.dao.LocationDAO;
+import org.example.dao.PartecipazioneDao;
+import org.example.dao.PersonaDao;
+import org.example.entities.*;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -17,14 +23,28 @@ public class Application {
 
         EntityManager em = emFactory.createEntityManager();
         EventoDAO eventoDao = new EventoDAO(em);
+        LocationDAO locatDao = new LocationDAO(em);
+        PersonaDao personaDAO = new PersonaDao(em);
+        PartecipazioneDao partDAO = new PartecipazioneDao(em);
 
-//        Evento test = new Evento("cena di fine anno"
-//                , LocalDate.of(2024, 5, 30)
-//                , "ervtbrthbknknknnkn", 100, EventoType.PRIVATO);
+        Evento test = null;
+
+        Location roma = new Location("Stadio olimpico", "Roma", (List<Evento>) test);
+
+        locatDao.save(roma);
+
+        test = new Evento("gita in montagna"
+                , LocalDate.of(2024, 4, 12)
+                , "fewrzgrehrth", 20, EventoType.PRIVATO, roma);
 
         System.out.println("Hello World!");
 
-//        eventoDao.save(test);
+        eventoDao.save(test);
+
+        Persona prima = null;
+        Partecipazione eccomi = new Partecipazione(prima, test);
+
+        partDAO.save(eccomi);
 
 //        Evento trova = null;
 //        try {
@@ -47,6 +67,10 @@ public class Application {
 //        } finally {
 //            System.out.println(cancella.getTitolo());
 //        }
+
+
+        prima = new Persona("Gianni", "Rossi", "giannirossi@gmail.com", LocalDate.of(1983, 9, 25), PersonaType.M, test);
+        personaDAO.save(prima);
 
         em.close();
         emFactory.close();
